@@ -3,6 +3,8 @@
 
 <h1>Ações</h1>
 
+<p><button @onclick="Refresh">Atualizar</button></p>
+
 @if (_acoes == null)
 {
     <p><em>Carregando...</em></p>
@@ -24,7 +26,7 @@ else
                 <tr>
                     <td>@acao.Codigo</td>
                     <td>@acao.Valor</td>
-                    <td>@acao.Date.ToShortDateString()</td>
+                    <td>@(acao.Date.ToShortDateString() + " " + acao.Date.ToShortTimeString())</td>
                     <td>@(acao.Type == "low" ? "Baixa" : "Alta")</td>
                 </tr>
             }
@@ -38,5 +40,13 @@ else
     protected override async Task OnInitializedAsync()
     {
         _acoes = await Http.GetFromJsonAsync<AcaoMongodb[]>("https://acoesgbbigardi.azurewebsites.net/api/ListarAcoesMongo");
+    }
+
+    private async Task Refresh()
+    {
+        _acoes = null;
+        StateHasChanged();
+        _acoes = await Http.GetFromJsonAsync<AcaoMongodb[]>("https://acoesgbbigardi.azurewebsites.net/api/ListarAcoesMongo");
+        StateHasChanged();
     }
 }
