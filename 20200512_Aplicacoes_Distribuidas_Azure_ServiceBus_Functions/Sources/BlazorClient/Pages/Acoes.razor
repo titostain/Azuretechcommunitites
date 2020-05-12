@@ -1,0 +1,42 @@
+@page "/acoes"
+@inject HttpClient Http
+
+<h1>Ações</h1>
+
+@if (_acoes == null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Variação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var acao in _acoes)
+            {
+                <tr>
+                    <td>@acao.Codigo</td>
+                    <td>@acao.Valor</td>
+                    <td>@acao.Date.ToShortDateString()</td>
+                    <td>@(acao.Type == "low" ? "Baixa" : "Alta")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private AcaoMongodb[] _acoes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _acoes = await Http.GetFromJsonAsync<AcaoMongodb[]>("https://acoesgbbigardi.azurewebsites.net/api/ListarAcoesMongo");
+    }
+}

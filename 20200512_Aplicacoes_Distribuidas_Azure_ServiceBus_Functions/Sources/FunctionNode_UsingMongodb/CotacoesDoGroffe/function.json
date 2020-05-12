@@ -1,0 +1,12 @@
+{
+  "bindings": [
+    {
+      "name": "mySbMsg",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "topic-acoes",
+      "subscriptionName": "bigardsubscription",
+      "connection": "demoazuresb_SERVICEBUS"
+    }
+  ]
+}
