@@ -1,0 +1,13 @@
+{
+  "name": "demo_azure_sb",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "mongodb": "^3.5.7"
+  },
+  "devDependencies": {}
+}

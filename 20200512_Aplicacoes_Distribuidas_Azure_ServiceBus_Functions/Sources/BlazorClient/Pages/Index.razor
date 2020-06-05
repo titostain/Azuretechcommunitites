@@ -1,0 +1,28 @@
+﻿@page "/"
+@inject HttpClient Client;
+
+<h1>Ações</h1>
+
+<p>Cadastrar ação e valor</p>
+<EditForm Model="@_acao" OnSubmit="HandleSubmit">
+    <p>
+        <label for="codigo">Código</label>
+        <InputText id="codigo" @bind-Value="_acao.Codigo" />
+    </p>
+    <p>
+        <label for="valor">Valor</label>
+        <InputNumber id="valor" @bind-Value="_acao.Valor" />
+    </p>
+
+    <button type="submit">Enviar</button>
+</EditForm>
+
+
+@code {
+    private Acao _acao { get; set; } = new Acao();
+
+    private async Task HandleSubmit()
+    {
+        await Client.PostAsJsonAsync<Acao>("https://groffeservicebus.azurewebsites.net/Acoes", _acao);
+    }
+}

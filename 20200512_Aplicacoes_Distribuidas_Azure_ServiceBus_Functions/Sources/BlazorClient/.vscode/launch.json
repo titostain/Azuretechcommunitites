@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (Blazor Standalone)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "run"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": ".NET Core Debug Blazor Web Assembly in Chrome",
+            "type": "pwa-chrome",
+            "request": "launch",
+            "timeout": 30000,
+            "url": "https://localhost:5001",
+            "webRoot": "${workspaceFolder}",
+            "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
+        }
+    ]
+}
